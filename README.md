@@ -1,11 +1,11 @@
 # Geetika Jain
 
-Jag heter Geetika Jain och jobber med programmering.
+Jag heter Geetika Jain och jobber med programmering.[Läs mer om mig](./about-me.md)
 
 ![Geetika Jain]()
 
 
-##Utbildning
+## Utbildning
 
 -Jensen Gymnasium
 -JU
