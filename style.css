@@ -1,0 +1,340 @@
+:root {
+    --text-color: #1a1c20;
+    --link-color: #4a76ee;
+    --background-color: #eeeff1;
+    --primary-color: #4a76ee;
+    --secondary-color: #ffffff;
+    --button-bg-color: #1a1c20;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Navigation Bar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    height: 80px;
+    background-color: var(--secondary-color);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+nav .left a {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+nav .right a {
+    color: var(--text-color);
+    margin: 0 10px;
+    font-size: 18px;
+}
+
+nav .right a:last-child {
+    color: var(--secondary-color);
+    background-color: var(--button-bg-color);
+    padding: 8px 15px;
+    border-radius: 5px;
+}
+
+nav .right a span {
+    margin-left: 5px;
+}
+
+nav a:hover {
+    opacity: 0.8;
+}
+
+/* Hero Section */
+.hero-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    margin: 50px 0;
+    gap: 40px;
+}
+
+.hero-section .text {
+    flex: 5;
+}
+
+.hero-section .text h2 {
+    font-size: 45px;
+    color: var(--text-color);
+}
+
+.hero-section .text p {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.hero-section .links {
+    margin-top: 25px;
+}
+
+.hero-section .links a {
+    display: inline-block;
+    padding: 8px 15px;
+    border: 2px solid var(--link-color);
+    border-radius: 5px;
+    margin-right: 10px;
+    color: var(--link-color);
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.hero-section .links a:hover {
+    background-color: var(--link-color);
+    color: var(--secondary-color);
+}
+
+/* Image Styling in Hero Section */
+.hero-section .headshot img {
+    width: 100%;
+    max-width: 400px; /* Adjust this based on your design */
+    height: auto;
+    border-radius: 500px; /* Rounded corners */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Shadow for depth */
+}
+
+/* Skills Section */
+.skills-section {
+    padding: 50px;
+    background-color: var(--secondary-color);
+    margin-bottom: 50px;
+    border-radius: 8px;
+}
+
+.skills-section h2 {
+    text-align: center;
+    font-size: 35px;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+.skills-section .text {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.skills-section .cells {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.skills-section .cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 60px;
+    padding: 10px 20px;
+    border: 1px solid var(--link-color);
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: var(--secondary-color);
+    transition: background-color 0.3s;
+}
+
+.skills-section .cell:hover {
+    background-color: var(--link-color);
+    color: var(--secondary-color);
+}
+
+/* Projects Section */
+.projects-section {
+    padding: 50px;
+    background-color: var(--background-color);
+}
+
+.projects-section h2 {
+    text-align: center;
+    font-size: 35px;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+.project {
+    margin-bottom: 40px;
+}
+
+.project h3 {
+    font-size: 28px;
+    color: var(--text-color);
+}
+
+.project p {
+    margin-top: 10px;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.project strong {
+    color: var(--text-color);
+}
+
+/* Contact Section */
+.contact-section {
+    padding: 50px;
+    background-color: var(--secondary-color);
+    text-align: center;
+}
+
+.contact-section h2 {
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+
+.contact-section p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+/* Contact Form */
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: var(--text-color);
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid var(--text-color);
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.contact-form button {
+    background-color: var(--button-bg-color);
+    color: var(--secondary-color);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: var(--link-color);
+}
+
+/* Social Media Links */
+.social-links {
+    margin-top: 30px;
+}
+
+.social-links a {
+    color: var(--link-color);
+    font-size: 18px;
+    margin: 0 15px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--text-color);
+}
+
+.social-links i {
+    margin-right: 8px;
+}
+
+/* Media Queries */
+@media (max-width: 850px) {
+    .hero-section .text h2 {
+        font-size: 35px;
+    }
+}
+
+@media (max-width: 740px) {
+    .hero-section {
+        flex-direction: column-reverse;
+        padding: 0 20px;
+    }
+
+    .hero-section .text h2 {
+        font-size: 30px;
+    }
+
+    .skills-section {
+        padding: 20px;
+    }
+
+    .projects-section {
+        padding: 20px;
+    }
+
+    .cells {
+        gap: 10px;
+    }
+
+    .cell {
+        width: 150px;
+        height: 50px;
+    }
+}
+
+@media (max-width: 600px) {
+    nav {
+        padding: 0 20px;
+    }
+
+    nav .right a {
+        font-size: 16px;
+    }
+
+    nav .right a:last-child {
+        padding: 5px 10px;
+    }
+
+    .hero-section .text h2 {
+        font-size: 28px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        padding: 8px;
+    }
+
+    .contact-form button {
+        padding: 8px 16px;
+        font-size: 16px;
+    }
+
+    .social-links a {
+        font-size: 16px;
+    }
+}
