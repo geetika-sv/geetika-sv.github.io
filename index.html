@@ -109,11 +109,9 @@
         </form>
 
         <div class="stored-data">
-            <h3>Saved Data</h3>
-            <p id="savedName">No name saved.</p>
-            <p id="savedEmail">No email saved.</p>
-            <p id="savedMessage">No message saved.</p>
-            <button type="button" onclick="clearSavedData()">Clear Saved Data</button>
+            <h3>Saved Contacts</h3>
+            <div id="savedContacts"></div>
+            <button type="button" onclick="clearSavedData()">Clear All Saved Data</button>
         </div>
     </section>
 </main>
@@ -123,15 +121,17 @@
 </footer>
 
 <script>
+    // Save multiple contacts in localStorage
     function saveContactData() {
         const name = document.getElementById('name').value.trim();
         const email = document.getElementById('email').value.trim();
         const message = document.getElementById('message').value.trim();
 
         if (name && email && message) {
-            localStorage.setItem('contactName', name);
-            localStorage.setItem('contactEmail', email);
-            localStorage.setItem('contactMessage', message);
+            const contact = { name, email, message };
+            const contacts = JSON.parse(localStorage.getItem('contacts')) || [];
+            contacts.push(contact);
+            localStorage.setItem('contacts', JSON.stringify(contacts));
             alert('Your message has been saved!');
             displaySavedData();
             clearFormFields();
@@ -140,30 +140,54 @@
         }
     }
 
+    // Display all saved contacts
     function displaySavedData() {
-        const savedName = localStorage.getItem('contactName') || 'No name saved.';
-        const savedEmail = localStorage.getItem('contactEmail') || 'No email saved.';
-        const savedMessage = localStorage.getItem('contactMessage') || 'No message saved.';
+        const contacts = JSON.parse(localStorage.getItem('contacts')) || [];
+        const savedContactsContainer = document.getElementById('savedContacts');
+        savedContactsContainer.innerHTML = '';
 
-        document.getElementById('savedName').textContent = `Name: ${savedName}`;
-        document.getElementById('savedEmail').textContent = `Email: ${savedEmail}`;
-        document.getElementById('savedMessage').textContent = `Message: ${savedMessage}`;
+        if (contacts.length === 0) {
+            savedContactsContainer.innerHTML = '<p>No contacts saved.</p>';
+            return;
+        }
+
+        contacts.forEach((contact, index) => {
+            const contactElement = document.createElement('div');
+            contactElement.classList.add('contact');
+            contactElement.innerHTML = `
+                <p><strong>Name:</strong> ${contact.name}</p>
+                <p><strong>Email:</strong> ${contact.email}</p>
+                <p><strong>Message:</strong> ${contact.message}</p>
+                <button onclick="deleteContact(${index})">Delete</button>
+            `;
+            savedContactsContainer.appendChild(contactElement);
+        });
     }
 
+    // Delete individual contact
+    function deleteContact(index) {
+        const contacts = JSON.parse(localStorage.getItem('contacts')) || [];
+        contacts.splice(index, 1);
+        localStorage.setItem('contacts', JSON.stringify(contacts));
+        displaySavedData();
+        alert('Contact deleted successfully!');
+    }
+
+    // Clear all saved contacts
+    function clearSavedData() {
+        localStorage.removeItem('contacts');
+        displaySavedData();
+        alert('All saved data cleared successfully!');
+    }
+
+    // Clear the form fields
     function clearFormFields() {
         document.getElementById('name').value = '';
         document.getElementById('email').value = '';
         document.getElementById('message').value = '';
     }
 
-    function clearSavedData() {
-        localStorage.removeItem('contactName');
-        localStorage.removeItem('contactEmail');
-        localStorage.removeItem('contactMessage');
-        alert('Saved data cleared successfully!');
-        displaySavedData();
-    }
-
+    // Display saved contacts on page load
     window.onload = displaySavedData;
 </script>
 </body>
