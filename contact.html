@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Contact - Portfolio</title>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">Geetika Jain</a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="skills.html">Skills</a>
+            <a href="projects.html">Projects</a>
+            <a href="contact.html" class="active">Contact</a>
+        </nav>
+        <div class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu">
+            &#9776; <!-- Hamburger icon -->
+        </div>
+    </header>
+
+    <section class="contact">
+        <h2>Contact Me</h2>
+        <div class="contact-details">
+            <div class="detail-item">
+                <i class="fa-solid fa-envelope"></i>
+                <p>Email: <a href="mailto:drgeetika332@gmail.com">drgeetika332@gmail.com</a></p>
+            </div>
+            <div class="detail-item">
+                <i class="fa-solid fa-phone"></i>
+                <p>Phone: <a href="tel:+46725746722">+46725746722</a></p>
+            </div>
+            <div class="detail-item">
+                <i class="fa-solid fa-map-marker-alt"></i>
+                <p>Location: Stockholm, Sweden</p>
+            </div>
+        </div>
+        <form class="contact-form" id="contactForm">
+            <h3>Get in Touch</h3>
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+            <button type="button" class="btn" onclick="saveData()">Send Message</button>
+        </form>
+        <div class="stored-data" aria-live="polite">
+            <h3>Saved Data</h3>
+            <p id="savedName">No name saved.</p>
+            <p id="savedEmail">No email saved.</p>
+            <p id="savedMessage">No message saved.</p>
+            <button type="button" class="btn clear-btn" onclick="clearLocalStorage()">Clear Saved Data</button>
+        </div>
+    </section>
+    <footer>
+        <p>© 2024 Geetika Jain</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('active');
+        }
+
+        // Save form data to localStorage
+        function saveData() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            if (name && email && message) {
+                let contactData = JSON.parse(localStorage.getItem('contacts')) || [];
+                contactData.push({ name, email, message });
+                localStorage.setItem('contacts', JSON.stringify(contactData));
+
+                alert('Your message has been saved!');
+                displaySavedData();
+                clearForm();
+            } else {
+                if (!name) document.getElementById('name').style.border = '1px solid red';
+                if (!email) document.getElementById('email').style.border = '1px solid red';
+                if (!message) document.getElementById('message').style.border = '1px solid red';
+                alert('Please fill out all fields before submitting.');
+            }
+        }
+
+        // Display saved data from localStorage
+        function displaySavedData() {
+            const contactData = JSON.parse(localStorage.getItem('contacts')) || [];
+            const savedDataContainer = document.querySelector('.stored-data');
+            savedDataContainer.innerHTML = '<h3>Saved Data</h3>';
+
+            if (contactData.length > 0) {
+                contactData.forEach((contact, index) => {
+                    const contactElement = document.createElement('div');
+                    contactElement.classList.add('contact-entry');
+                    contactElement.innerHTML = `
+                        <p><strong>Entry ${index + 1}</strong></p>
+                        <p>Name: ${contact.name}</p>
+                        <p>Email: ${contact.email}</p>
+                        <p>Message: ${contact.message}</p>
+                    `;
+                    savedDataContainer.appendChild(contactElement);
+                });
+            } else {
+                savedDataContainer.innerHTML += '<p>No saved data available.</p>';
+            }
+
+            const clearButton = document.createElement('button');
+            clearButton.textContent = 'Clear Saved Data';
+            clearButton.classList.add('btn', 'clear-btn');
+            clearButton.onclick = clearLocalStorage;
+            savedDataContainer.appendChild(clearButton);
+        }
+
+        function clearForm() {
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('message').value = '';
+            document.getElementById('name').style.border = '';
+            document.getElementById('email').style.border = '';
+            document.getElementById('message').style.border = '';
+        }
+
+        function clearLocalStorage() {
+            localStorage.clear();
+            displaySavedData();
+            alert('All saved data has been cleared.');
+        }
+
+        window.onload = function() {
+            displaySavedData();
+        };
+    </script>
+</body>
+</html>
