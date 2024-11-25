@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Geetika Jain | Portfolio</title>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo" aria-label="Hi, I'm Geetika 👋">Welcome to my Portfolio</a>
+        <nav>
+            <a href="index.html" class="active">Home</a>
+            <a href="skills.html">Skills</a>
+            <a href="projects.html">Projects</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <div class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu">
+            &#9776; <!-- Hamburger icon -->
+        </div>
+    </header>
+    <section class="home">
+        <div class="home-img">
+            <img src="img/photo.webp" alt="Geetika Jain"> 
+        </div>
+        <div class="home-content">
+            <h1>Hi, I am <span>Geetika</span></h1>
+            <h3 class="typing-text"><span></span></h3>
+            <p>🌟 A Passionate Cloud Developer Specializing in Amazon Web Services & Java! 🚀</p>
+            <div class="social-icons">
+                <a href="www.linkedin.com/in/geetika-geetika-23243682" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/geetika-sv" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>© 2024 Geetika Jain</p>
+    </footer>
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
